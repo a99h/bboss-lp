@@ -4,10 +4,12 @@
           box-sizing: border-box;
   margin: 0;
   padding: 0;
+  /** border: 1px solid red **/
 }
 
 .container {
   max-width: 1120px;
+  padding: 0 10px;
   margin: 0 auto;
 }
 
@@ -19,6 +21,10 @@ body {
 .header {
   background-color: black;
   color: white;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .navbar {
@@ -33,6 +39,15 @@ body {
           justify-content: space-between;
   padding-top: 60px;
   padding-bottom: 24px;
+}
+
+.navbar-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .logo {
@@ -56,6 +71,41 @@ body {
   font-weight: 700;
 }
 
+.menu__button {
+  width: 50px;
+  height: 50px;
+  background-color: #2a2a2a;
+  border-radius: 50%;
+  position: relative;
+  display: none;
+}
+
+.menu__lines::before, .menu__lines, .menu__lines::after {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  position: absolute;
+  -webkit-transition: 0.4s ease;
+  transition: 0.4s ease;
+}
+
+.menu__lines::before {
+  content: "";
+  top: -8px;
+}
+
+.menu__lines::after {
+  content: "";
+  top: 8px;
+}
+
+.menu__lines {
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
 .menu__item {
   margin-left: 28px;
   text-decoration: none;
@@ -77,6 +127,60 @@ body {
 
 .menu__item:hover::after, .menu__item:focus::after {
   width: 100%;
+}
+
+.navbar_active .menu__lines, .navbar_active .menu__lines::before, .navbar_active .menu__lines::after {
+  -webkit-transition: 0.4s ease;
+  transition: 0.4s ease;
+}
+
+.navbar_active .menu__lines {
+  background: transparent;
+}
+
+.navbar_active .menu__lines::before {
+  top: 0;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.navbar_active .menu__lines::after {
+  top: 0;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+
+@media (max-width: 1100px) {
+  .navbar {
+    display: block;
+    -webkit-transition: 0.4s ease;
+    transition: 0.4s ease;
+  }
+  .navbar .menu__nav {
+    display: none;
+  }
+  .navbar .menu__button {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .navbar_active {
+    padding-top: 10px;
+    -webkit-transition: 0.4s ease;
+    transition: 0.4s ease;
+  }
+  .navbar_active .menu__nav {
+    margin-top: 25px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+  .navbar_active .menu__item {
+    margin: auto;
+  }
 }
 
 .intro {
